@@ -15,11 +15,11 @@ date_default_timezone_set("Asia/Colombo");
 
 /*** To be filled ****/
 
-$password= <to be filled>;
+$password= "To be filled";
 
-$applicationId = <to be filled>;
+$applicationId = "To be filled";
 
-$serverurl= <to be filled>;
+$serverurl= "To be filled";
 
  
 
@@ -36,7 +36,7 @@ try{
 	/*************************************************************/
 	
 
-	$sender = new SMSSender( $serverurl, $applicationId, $password);
+	$sender = new SMSSender($serverurl, $applicationId, $password);
 	
 	
 	list($key, $second) = explode(" ",$content);
@@ -50,27 +50,26 @@ try{
        	
 		//Broadcasting A Message
 		
-	     	$boradmsg = substr($content,10);
+	     	$boradmsg = substr($content,7);
        
 	     	error_log("Broadcast Message ".$content);
 		
 	     	$response=$sender->broadcastMessage($boradmsg);
 
 
-	   }elseif ($second==""){
+	   }else{
 
 		//Replying to an individual Message
 		
 	     	error_log("Message received ".$content);
 	
-	     	$sender->sendMessage($reply, $address);
+	     	$sender->sendMessage("May the force be with you Jedi Master ".$second,$address);
 
 	      
-	}
+             }
 
 
 						
-
 
 	}catch(SMSServiceException $e){
 
